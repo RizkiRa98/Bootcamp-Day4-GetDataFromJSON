@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<body>
+  <h1>Ini adalah halaman Contact</h1>
+  <h3>Link</h3>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <h1>Web Server Node JS</h1>
+  <table border="1">
+    <tr>
+      <td style="font-weight: bold; text-align: center;">Nama</td>
+      <td style="font-weight: bold; text-align: center;">Email</td>
+    </tr>
+    <!-- pengkondisian jika Data tidak ada -->
+    <% if (!contact.length) { %>
+    <tr>
+      <td colspan="2" style="color: red;">Data Tidak ada</td>
+    </tr>
+    <% } %>
+    <!-- End Pengkondisian Error -->
+
+    <!-- Mengambil array dari app menggunakan forEach -->
+    <% contact.forEach(element => { %>
+    <tr>
+      <td><%= element.name %> </td>
+      <td><%= element.email %> </td>
+    </tr>
+    <% }) %>
+    <!-- End forEach -->
+  </table>
+</body>
+
+</html>
