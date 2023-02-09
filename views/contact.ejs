@@ -1,10 +1,11 @@
 <!-- Body -->
 <h1>Ini adalah halaman Contact</h1>
 <h3>Contact List</h3>
-<table border="1">
+<table border="1" width="500">
   <tr>
     <td style="font-weight: bold; text-align: center;">Nama</td>
     <td style="font-weight: bold; text-align: center;">Email</td>
+    <td style="font-weight: bold; text-align: center;">Mobile</td>
   </tr>
   <!-- pengkondisian jika Data tidak ada -->
   <% if (!contact.length) { %>
@@ -19,6 +20,7 @@
   <tr>
     <td><%= element.name %> </td>
     <td><%= element.email %> </td>
+    <td><%= element.mobile  %></td>
   </tr>
   <% }) %>
   <!-- End forEach -->

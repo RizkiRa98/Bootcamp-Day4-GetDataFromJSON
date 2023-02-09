@@ -2,8 +2,16 @@ const express = require("express"); //modul express
 const app = express(); //function express
 const port = 3000;
 const expressLayouts = require("express-ejs-layouts");
+const morgan = require("morgan");
+const fs = require("fs");
 
-// Express Static
+//Get data from JSON
+const contact = JSON.parse(fs.readFileSync("./contacts.json", "utf-8"));
+
+// Miiddleware Third-Party Morgan
+app.use(morgan("dev"));
+
+// Middleware xpress Static
 app.use(express.static("public"));
 
 //Set modul expressLayouts
@@ -18,20 +26,20 @@ app.use((req, res, next) => {
 //set EJS
 app.set("view engine", "ejs");
 
-const contact = [
-  {
-    name: "Muhamad Rizki Ramadhan",
-    email: "rizkiramadhan350@gmail.com",
-  },
-  {
-    name: "Iqbal",
-    email: "iqbal@gmail.com",
-  },
-  {
-    name: "Taufik",
-    email: "Taufik@gmail.com",
-  },
-];
+// const contact = [
+//   {
+//     name: "Muhamad Rizki Ramadhan",
+//     email: "rizkiramadhan350@gmail.com",
+//   },
+//   {
+//     name: "Iqbal",
+//     email: "iqbal@gmail.com",
+//   },
+//   {
+//     name: "Taufik",
+//     email: "Taufik@gmail.com",
+//   },
+// ];
 
 // '/' meaning root
 app.get("/", (req, res) => {
