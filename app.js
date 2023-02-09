@@ -45,6 +45,7 @@ app.get('/about', (req, res) => {
     root: __dirname
   })
 })
+
 app.get('/contact', (req, res) => {
   // res.send('<h1> Halaman contact </h1>');
   res.sendFile('./contact.html', {
@@ -52,7 +53,7 @@ app.get('/contact', (req, res) => {
   })
 })
 
-//memanggil halaman menggunakan root parameter
+//memanggil halaman menggunakan roote parameter
 app.get('/product/:productID/category/:categoryID', (req, res) => {
   // res.send('<h1> Halaman contact </h1>');
   res.send(req.params)
