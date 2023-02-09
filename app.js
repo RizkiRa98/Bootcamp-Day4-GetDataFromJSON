@@ -1,6 +1,14 @@
 const express = require("express"); //modul express
 const app = express(); //function express
 const port = 3000;
+const expressLayouts = require("express-ejs-layouts");
+
+//Set modul expressLayouts
+app.use(expressLayouts);
+app.set("layout", "./layout/fullLayout");
+
+//set EJS
+app.set("view engine", "ejs");
 
 const contact = [
   {
@@ -17,20 +25,17 @@ const contact = [
   },
 ];
 
-//set EJS
-app.set("view engine", "ejs");
-
 // '/' meaning root
 app.get("/", (req, res) => {
   // res.send('Hello World!')
   res.render("index", {
-    root: __dirname,
+    pageName: "Home Page",
   });
 });
 app.get("/about", (req, res) => {
   // res.send('<h1> Halaman About </h1>');
   res.render("about", {
-    root: __dirname,
+    pageName: "About Page",
   });
 });
 
@@ -38,6 +43,7 @@ app.get("/contact", (req, res) => {
   // res.send('<h1> Halaman contact </h1>');
   res.render("contact", {
     contact,
+    pageName: "Contact Page",
   });
 });
 
