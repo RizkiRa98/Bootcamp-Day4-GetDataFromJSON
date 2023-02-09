@@ -3,9 +3,17 @@ const app = express(); //function express
 const port = 3000;
 const expressLayouts = require("express-ejs-layouts");
 
+// Express Static
+app.use(express.static("public"));
+
 //Set modul expressLayouts
 app.use(expressLayouts);
 app.set("layout", "./layout/fullLayout");
+
+app.use((req, res, next) => {
+  console.log("Time:", Date.now());
+  next();
+});
 
 //set EJS
 app.set("view engine", "ejs");
@@ -32,18 +40,21 @@ app.get("/", (req, res) => {
     pageName: "Home Page",
   });
 });
-app.get("/about", (req, res) => {
-  // res.send('<h1> Halaman About </h1>');
-  res.render("about", {
-    pageName: "About Page",
-  });
-});
 
+//memanggil halaman contact
 app.get("/contact", (req, res) => {
   // res.send('<h1> Halaman contact </h1>');
   res.render("contact", {
     contact,
     pageName: "Contact Page",
+  });
+});
+
+//memanggil halaman about
+app.get("/about", (req, res) => {
+  // res.send('<h1> Halaman About </h1>');
+  res.render("about", {
+    pageName: "About Page",
   });
 });
 
@@ -53,7 +64,7 @@ app.get("/product/:productID/category/:categoryID", (req, res) => {
   res.send(req.params);
 });
 
-app.use("/", (req, res) => {
+app.use("/", (req, res, next) => {
   res.status(404);
   res.send("Page Not Foung: 404");
 });
